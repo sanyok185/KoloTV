@@ -2020,6 +2020,22 @@
             threshold: .5
         });
         document.querySelectorAll(".animated-svg").forEach((el => observer.observe(el)));
+        document.querySelectorAll(".simplebar-track.simplebar-vertical").forEach((track => {
+            let isDragging = false;
+            let startY, startScrollTop;
+            track.addEventListener("touchstart", (e => {
+                isDragging = true;
+                startY = e.touches[0].clientY;
+                startScrollTop = track.closest(".simplebar-content-wrapper").scrollTop;
+            }));
+            track.addEventListener("touchmove", (e => {
+                if (!isDragging) return;
+                let deltaY = e.touches[0].clientY - startY;
+                track.closest(".simplebar-content-wrapper").scrollTop = startScrollTop - deltaY;
+                e.preventDefault();
+            }));
+            track.addEventListener("touchend", (() => isDragging = false));
+        }));
         window["FLS"] = false;
         digitsCounter();
     })();
