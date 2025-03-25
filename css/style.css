@@ -71,6 +71,11 @@ h6 {
   font-size: inherit
 }
 body {
+  -webkit-transform: scale(.9);
+  transform: scale(.9);
+  -webkit-transform-origin: top left;
+  transform-origin: top left;
+  width: 111.1%;
   background: #0d1d22
 }
 .lock body {
