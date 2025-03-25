@@ -513,6 +513,15 @@ body {
   z-index: 1;
   background: linear-gradient(180deg,rgba(0,0,0,.29) 0,rgba(46,46,46,.29) 100%)
 }
+.hero::after {
+  content: "";
+  background: linear-gradient(180deg,rgba(13,29,34,0) 0,#0d1d22 100%);
+  width: 100%;
+  bottom: -.0625rem;
+  left: 0;
+  z-index: 2;
+  position: absolute
+}
 .hero__container {
   position: relative;
   z-index: 10;
@@ -737,7 +746,8 @@ body {
   text-align: left
 }
 .item-speed__table td {
-  color: #f3f3f3
+  color: #f3f3f3;
+  text-align: left
 }
 .item-speed__chart {
   display: flex;
@@ -854,6 +864,7 @@ body {
 }
 .plan__button {
   padding: 1.75rem;
+  border-radius: .9375rem;
   gap: 1.0625rem;
   width: 100%
 }
@@ -904,7 +915,7 @@ body {
   text-align: left
 }
 .hardware__text {
-  flex-basis: 47.643979%;
+  flex-basis: 50.849673%;
   font-size: 1.25rem;
   transition: all .5s .25s;
   opacity: 0;
@@ -1427,7 +1438,7 @@ body {
     margin-bottom: 2.6875rem
   }
   .hero__label {
-    gap: 1.6875rem
+    gap: 1.3125rem
   }
   .hero__button {
     gap: 1.5625rem
@@ -1506,6 +1517,9 @@ body {
   .hero {
     padding-bottom: 17.5625rem
   }
+  .hero::after {
+    height: 16.125rem
+  }
   .hero__subtitle {
     font-size: 1.5rem
   }
@@ -1522,7 +1536,7 @@ body {
     padding-bottom: 2rem
   }
   .hero__label {
-    padding-left: 2.4375rem
+    padding-left: 2.1875rem
   }
   .hero__label img {
     width: 3.0625rem
@@ -1534,7 +1548,7 @@ body {
     margin-bottom: 3.5625rem
   }
   .hero__button img {
-    width: 2.5625rem
+    width: 3.4375rem
   }
   .audience__container {
     padding-top: 3.5625rem
@@ -1558,6 +1572,9 @@ body {
     height: 40.625rem
   }
   .item-speed__title {
+    font-size: 1.5rem
+  }
+  .item-speed__title span {
     font-size: 1.5rem
   }
   .item-speed__title:not(:last-child) {
@@ -1726,7 +1743,7 @@ body {
     margin-bottom: 1.875rem
   }
   .hero__label {
-    gap: 1.0625rem
+    gap: .8125rem
   }
   .hero__button {
     gap: .875rem
@@ -1853,6 +1870,9 @@ body {
   .hero {
     padding-bottom: 11.25rem
   }
+  .hero__button {
+    padding: 1.5rem 1.875rem 1.25rem 1.875rem
+  }
   .audience__items {
     grid-template-columns: auto
   }
@@ -1865,7 +1885,8 @@ body {
   .item-speed__body {
     -webkit-column-gap: .9375rem;
     -moz-column-gap: .9375rem;
-    column-gap: .9375rem
+    column-gap: .9375rem;
+    row-gap: 1.375rem
   }
   .item-technology:nth-child(1) {
     transition: all .5s .25s
@@ -1887,6 +1908,9 @@ body {
   }
   .item-technology__about {
     display: none
+  }
+  .plan__subtitle {
+    text-align: center
   }
   .product-hardware {
     padding: 0 0 2.125rem 0
@@ -1923,6 +1947,9 @@ body {
   }
   .footer-bottom__container {
     flex-direction: column
+  }
+  .hero__subtitle {
+    max-width: 17.25rem
   }
   .plan::before {
     display: none
@@ -1968,6 +1995,9 @@ body {
   .hero {
     padding-top: 12.3125rem
   }
+  .hero::after {
+    height: 14.25rem
+  }
   .hero__subtitle {
     font-size: .875rem
   }
@@ -1975,16 +2005,16 @@ body {
     font-size: 2rem
   }
   .hero__label {
-    padding-top: 1.25rem
+    padding-top: 1.0625rem
   }
   .hero__label {
-    padding-right: 1.9375rem
+    padding-right: .875rem
   }
   .hero__label {
-    padding-bottom: 1.25rem
+    padding-bottom: 1.125rem
   }
   .hero__label {
-    padding-left: 1.5rem
+    padding-left: 1.3125rem
   }
   .hero__label img {
     width: 1.9375rem
@@ -1996,7 +2026,7 @@ body {
     margin-bottom: 2.25rem
   }
   .hero__button img {
-    width: 2rem
+    width: 2.625rem
   }
   .audience__container {
     padding-top: 4.0625rem
@@ -2018,6 +2048,9 @@ body {
   }
   .item-speed__title {
     font-size: 1.25rem
+  }
+  .item-speed__title span {
+    font-size: 1rem
   }
   .item-speed__title:not(:last-child) {
     margin-bottom: .875rem
@@ -2203,6 +2236,9 @@ body {
   .hero {
     padding-top: clamp(12.3125rem ,10.8445945946rem + 5.3378378378vw ,17.25rem)
   }
+  .hero::after {
+    height: clamp(14.25rem ,13.6925675676rem + 2.027027027vw ,16.125rem)
+  }
   .hero__subtitle {
     font-size: clamp(.875rem ,.6891891892rem + .6756756757vw ,1.5rem)
   }
@@ -2210,16 +2246,16 @@ body {
     font-size: clamp(2rem ,1.4054054054rem + 2.1621621622vw ,4rem)
   }
   .hero__label {
-    padding-top: clamp(1.25rem ,1.027027027rem + .8108108108vw ,2rem)
+    padding-top: clamp(1.0625rem ,.7837837838rem + 1.0135135135vw ,2rem)
   }
   .hero__label {
-    padding-right: clamp(1.9375rem ,1.7516891892rem + .6756756757vw ,2.5625rem)
+    padding-right: clamp(.875rem ,.3733108108rem + 1.8243243243vw ,2.5625rem)
   }
   .hero__label {
-    padding-bottom: clamp(1.25rem ,1.027027027rem + .8108108108vw ,2rem)
+    padding-bottom: clamp(1.125rem ,.8648648649rem + .9459459459vw ,2rem)
   }
   .hero__label {
-    padding-left: clamp(1.5rem ,1.2212837838rem + 1.0135135135vw ,2.4375rem)
+    padding-left: clamp(1.3125rem ,1.0523648649rem + .9459459459vw ,2.1875rem)
   }
   .hero__label img {
     width: clamp(1.9375rem ,1.6030405405rem + 1.2162162162vw ,3.0625rem)
@@ -2231,7 +2267,7 @@ body {
     margin-bottom: clamp(2.25rem ,1.8597972973rem + 1.4189189189vw ,3.5625rem)
   }
   .hero__button img {
-    width: clamp(2rem ,1.8327702703rem + .6081081081vw ,2.5625rem)
+    width: clamp(2.625rem ,2.3834459459rem + .8783783784vw ,3.4375rem)
   }
   .audience__container {
     padding-top: clamp(3.5625rem ,4.2111486486rem + -.5405405405vw ,4.0625rem)
@@ -2253,6 +2289,9 @@ body {
   }
   .item-speed__title {
     font-size: clamp(1.25rem ,1.1756756757rem + .2702702703vw ,1.5rem)
+  }
+  .item-speed__title span {
+    font-size: clamp(1rem ,.8513513514rem + .5405405405vw ,1.5rem)
   }
   .item-speed__title:not(:last-child) {
     margin-bottom: clamp(.875rem ,.7449324324rem + .472972973vw ,1.3125rem)
@@ -2424,7 +2463,7 @@ body {
     margin-bottom: clamp(1.875rem ,1.6656602254rem + 1.0466988728vw ,2.6875rem)
   }
   .hero__label {
-    gap: clamp(1.0625rem ,.9014694042rem + .8051529791vw ,1.6875rem)
+    gap: clamp(.8125rem ,.6836755233rem + .6441223833vw ,1.3125rem)
   }
   .hero__button {
     gap: clamp(.875rem ,.6978663446rem + .885668277vw ,1.5625rem)
