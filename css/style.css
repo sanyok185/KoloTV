@@ -575,9 +575,9 @@ body {
   transform: translate(0)
 }
 .hero__button {
-  transition: opacity 1.2s 1s ease-in,box-shadow .4s,-webkit-transform .4s;
-  transition: opacity 1.2s 1s ease-in,transform .4s,box-shadow .4s;
-  transition: opacity 1.2s 1s ease-in,transform .4s,box-shadow .4s,-webkit-transform .4s;
+  transition: opacity 1s 1s ease-in,box-shadow .4s,-webkit-transform .4s;
+  transition: opacity 1s 1s ease-in,transform .4s,box-shadow .4s;
+  transition: opacity 1s 1s ease-in,transform .4s,box-shadow .4s,-webkit-transform .4s;
   opacity: 0;
   padding: 2.25rem 2.5rem 2.0625rem 2.875rem
 }
