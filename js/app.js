@@ -2004,6 +2004,22 @@
                 }));
             }
         }), 0);
+        const observer = new IntersectionObserver((entries => {
+            entries.forEach((entry => {
+                const target = entry.target;
+                if (entry.isIntersecting) {
+                    target.classList.add("_watcher-view");
+                    const path = target.querySelector("path");
+                    if (path) {
+                        const newPath = path.cloneNode(true);
+                        path.parentNode.replaceChild(newPath, path);
+                    }
+                } else target.classList.remove("_watcher-view");
+            }));
+        }), {
+            threshold: .5
+        });
+        document.querySelectorAll(".animated-svg").forEach((el => observer.observe(el)));
         window["FLS"] = false;
         digitsCounter();
     })();
