@@ -1830,7 +1830,7 @@ body {
   }
   .plan__connection {
     max-width: 100%;
-    transition: all 1.2s ease-out .2s
+    transition: all 1.2s ease-out .5s
   }
 }
 @media (max-width:47.99875em) {
