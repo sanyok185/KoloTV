@@ -2036,99 +2036,117 @@
             }));
             track.addEventListener("touchend", (() => isDragging = false));
         }));
-        const canvas = document.getElementById("speedTestCanvas");
-        const ctx = canvas.getContext("2d");
-        const centerX = canvas.width / 2;
-        const centerY = canvas.height / 2;
-        const radius = 120;
-        const maxSpeed = 2500;
-        let currentSpeed = 0;
-        let targetSpeed = 2310;
-        let animationFrame;
-        function drawGauge(speed) {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            ctx.beginPath();
-            ctx.arc(centerX, centerY, radius, Math.PI, 0);
-            ctx.strokeStyle = "#333";
-            ctx.lineWidth = 15;
-            ctx.stroke();
-            const endAngle = Math.PI + speed / maxSpeed * Math.PI;
-            ctx.beginPath();
-            ctx.arc(centerX, centerY, radius, Math.PI, endAngle);
-            ctx.strokeStyle = "#4B619B";
-            ctx.lineWidth = 15;
-            ctx.stroke();
-            const numTicks = 10;
-            const tickLength = 10;
-            const tickWidth = 2;
-            for (let i = 0; i <= numTicks; i++) {
-                const angle = Math.PI + i / numTicks * Math.PI;
-                const startX = centerX + (radius - tickLength - 10) * Math.cos(angle);
-                const startY = centerY + (radius - tickLength - 10) * Math.sin(angle);
-                const endX = centerX + (radius - 10) * Math.cos(angle);
-                const endY = centerY + (radius - 10) * Math.sin(angle);
+        document.addEventListener("DOMContentLoaded", (() => {
+            const canvas = document.getElementById("speedTestCanvas");
+            const ctx = canvas.getContext("2d");
+            const container = document.querySelector(".speed__animation");
+            function getCanvasSize() {
+                return Math.min(window.innerWidth * .9, 500);
+            }
+            function resizeCanvas() {
+                const size = getCanvasSize();
+                const dpr = window.devicePixelRatio || 1;
+                canvas.width = size * dpr;
+                canvas.height = size * dpr;
+                canvas.style.width = `${size}px`;
+                canvas.style.height = `${size}px`;
+                ctx.scale(dpr, dpr);
+                drawGauge(currentSpeed);
+            }
+            window.addEventListener("resize", resizeCanvas);
+            let currentSpeed = 0;
+            let targetSpeed = 2310;
+            let animationFrame;
+            let isAnimating = false;
+            function drawGauge(speed) {
+                const size = getCanvasSize();
+                const centerX = size / 2;
+                const centerY = size / 2;
+                const radius = size / 2.5;
+                const maxSpeed = 2500;
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
                 ctx.beginPath();
-                ctx.moveTo(startX, startY);
-                ctx.lineTo(endX, endY);
-                ctx.strokeStyle = "rgb(118, 254, 156)";
-                ctx.lineWidth = tickWidth;
+                ctx.arc(centerX, centerY, radius, Math.PI, 0);
+                ctx.strokeStyle = "#333";
+                ctx.lineWidth = 14;
                 ctx.stroke();
-                const textRadius = radius - 30;
-                const textX = centerX + textRadius * Math.cos(angle);
-                const textY = centerY + textRadius * Math.sin(angle);
-                const tickValue = Math.round(i / numTicks * maxSpeed);
-                ctx.fillStyle = "#fff";
-                ctx.font = "8px Inter Tight";
-                ctx.textAlign = "center";
-                ctx.textBaseline = "middle";
-                ctx.fillText(tickValue, textX, textY);
-            }
-            ctx.fillStyle = "#fff";
-            ctx.font = "28px Inter Tight";
-            ctx.textAlign = "center";
-            ctx.fillText(`${Math.round(speed)}`, centerX, centerY + 40);
-            ctx.font = "16px Inter Tight";
-            ctx.fillText("Mbps", centerX, centerY + 70);
-            const arrowLength = radius - 20;
-            const arrowAngle = Math.PI + speed / maxSpeed * Math.PI;
-            const arrowX = centerX + arrowLength * Math.cos(arrowAngle);
-            const arrowY = centerY + arrowLength * Math.sin(arrowAngle);
-            ctx.beginPath();
-            ctx.moveTo(centerX, centerY);
-            ctx.lineTo(arrowX, arrowY);
-            ctx.strokeStyle = "#00BFFF";
-            ctx.lineWidth = 3;
-            ctx.stroke();
-        }
-        function animateSpeedTest() {
-            const speedDiff = targetSpeed - currentSpeed;
-            const increment = speedDiff * .02;
-            if (Math.abs(speedDiff) > 1) {
-                currentSpeed += increment;
-                if (currentSpeed < 0) currentSpeed = 0;
-                if (currentSpeed > targetSpeed) currentSpeed = targetSpeed;
-                animationFrame = requestAnimationFrame(animateSpeedTest);
-            } else {
-                currentSpeed = targetSpeed;
-                cancelAnimationFrame(animationFrame);
-            }
-            drawGauge(currentSpeed);
-        }
-        const observer1 = new MutationObserver((mutationsList => {
-            mutationsList.forEach((mutation => {
-                if (mutation.type === "attributes" && mutation.attributeName === "class") {
-                    const target = mutation.target;
-                    if (target.classList.contains("_watcher-view")) {
-                        currentSpeed = 0;
-                        animateSpeedTest();
-                    }
+                const endAngle = Math.PI + speed / maxSpeed * Math.PI;
+                ctx.beginPath();
+                ctx.arc(centerX, centerY, radius, Math.PI, endAngle);
+                ctx.strokeStyle = "#4B619B";
+                ctx.lineWidth = 14;
+                ctx.stroke();
+                for (let i = 0; i <= 10; i++) {
+                    const angle = Math.PI + i / 10 * Math.PI;
+                    const startX = centerX + (radius - 20) * Math.cos(angle);
+                    const startY = centerY + (radius - 20) * Math.sin(angle);
+                    const endX = centerX + (radius - 5) * Math.cos(angle);
+                    const endY = centerY + (radius - 5) * Math.sin(angle);
+                    ctx.beginPath();
+                    ctx.moveTo(startX, startY);
+                    ctx.lineTo(endX, endY);
+                    ctx.strokeStyle = "rgb(118, 254, 156)";
+                    ctx.lineWidth = 4;
+                    ctx.stroke();
+                    const textX = centerX + (radius - 40) * Math.cos(angle);
+                    const textY = centerY + (radius - 40) * Math.sin(angle);
+                    const tickValue = Math.round(i / 10 * maxSpeed);
+                    ctx.fillStyle = "#fff";
+                    ctx.font = `${size * .035}px Arial`;
+                    ctx.textAlign = "center";
+                    ctx.textBaseline = "middle";
+                    ctx.fillText(tickValue, textX, textY);
                 }
+                ctx.fillStyle = "#fff";
+                ctx.font = `${size * .08}px Arial`;
+                ctx.textAlign = "center";
+                ctx.fillText(`${Math.round(speed)}`, centerX, centerY + size * .1);
+                ctx.font = `${size * .04}px Arial`;
+                ctx.fillText("Mbps", centerX, centerY + size * .16);
+                const arrowLength = radius - 20;
+                const arrowAngle = Math.PI + speed / maxSpeed * Math.PI;
+                const arrowX = centerX + arrowLength * Math.cos(arrowAngle);
+                const arrowY = centerY + arrowLength * Math.sin(arrowAngle);
+                ctx.beginPath();
+                ctx.moveTo(centerX, centerY);
+                ctx.lineTo(arrowX, arrowY);
+                ctx.strokeStyle = "#00BFFF";
+                ctx.lineWidth = 5;
+                ctx.stroke();
+            }
+            function animateSpeedTest() {
+                const speedDiff = targetSpeed - currentSpeed;
+                const increment = speedDiff * .05;
+                if (Math.abs(speedDiff) > 1) {
+                    currentSpeed += increment;
+                    animationFrame = requestAnimationFrame(animateSpeedTest);
+                } else {
+                    currentSpeed = targetSpeed;
+                    cancelAnimationFrame(animationFrame);
+                    isAnimating = false;
+                }
+                drawGauge(currentSpeed);
+            }
+            function startAnimation() {
+                if (!isAnimating) {
+                    currentSpeed = 0;
+                    isAnimating = true;
+                    animateSpeedTest();
+                }
+            }
+            function checkVisibility() {
+                if (container.classList.contains("_watcher-view")) startAnimation();
+            }
+            const observer = new MutationObserver((() => {
+                checkVisibility();
             }));
+            observer.observe(container, {
+                attributes: true,
+                attributeFilter: [ "class" ]
+            });
+            checkVisibility();
+            resizeCanvas();
         }));
-        const speedAnimationElement = document.querySelector(".speed__animation");
-        if (speedAnimationElement) observer1.observe(speedAnimationElement, {
-            attributes: true
-        });
         window["FLS"] = false;
         digitsCounter();
     })();
