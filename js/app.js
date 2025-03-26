@@ -2004,6 +2004,38 @@
                 }));
             }
         }), 0);
+        const observer = new IntersectionObserver((entries => {
+            entries.forEach((entry => {
+                const target = entry.target;
+                if (entry.isIntersecting) {
+                    target.classList.add("_watcher-view");
+                    const path = target.querySelector("path");
+                    if (path) {
+                        const newPath = path.cloneNode(true);
+                        path.parentNode.replaceChild(newPath, path);
+                    }
+                } else target.classList.remove("_watcher-view");
+            }));
+        }), {
+            threshold: .5
+        });
+        document.querySelectorAll(".animated-svg").forEach((el => observer.observe(el)));
+        document.querySelectorAll(".simplebar-track.simplebar-vertical").forEach((track => {
+            let isDragging = false;
+            let startY, startScrollTop;
+            track.addEventListener("touchstart", (e => {
+                isDragging = true;
+                startY = e.touches[0].clientY;
+                startScrollTop = track.closest(".simplebar-content-wrapper").scrollTop;
+            }));
+            track.addEventListener("touchmove", (e => {
+                if (!isDragging) return;
+                let deltaY = e.touches[0].clientY - startY;
+                track.closest(".simplebar-content-wrapper").scrollTop = startScrollTop - deltaY;
+                e.preventDefault();
+            }));
+            track.addEventListener("touchend", (() => isDragging = false));
+        }));
         const canvas = document.getElementById("speedTestCanvas");
         const ctx = canvas.getContext("2d");
         const centerX = canvas.width / 2;
@@ -2082,21 +2114,7 @@
             }
             drawGauge(currentSpeed);
         }
-        const observer = new IntersectionObserver((entries => {
-            entries.forEach((entry => {
-                if (entry.isIntersecting) {
-                    const element = entry.target;
-                    element.classList.add("_watcher-view");
-                    currentSpeed = 0;
-                    animateSpeedTest();
-                } else {
-                    const element = entry.target;
-                    element.classList.remove("_watcher-view");
-                }
-            }));
-        }));
-        const speedAnimationElement = document.querySelector(".speed__animation");
-        if (speedAnimationElement) observer.observe(speedAnimationElement);
+        animateSpeedTest();
         window["FLS"] = false;
         digitsCounter();
     })();

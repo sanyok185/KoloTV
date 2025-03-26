@@ -5,8 +5,8 @@
 	<title>HomePage</title>
 	<meta charset="UTF-8">
 	<meta name="format-detection" content="telephone=no">
-	<link rel="stylesheet" href="css/style.min.css?_v=20250326162445">
-	<script src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js?_v=20250326162445"></script>
+	<link rel="stylesheet" href="css/style.min.css?_v=20250326165212">
+	<script src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js?_v=20250326165212"></script>
 	<!-- <link rel="shortcut icon" href="favicon.ico"> -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
@@ -162,19 +162,20 @@
 								<div class="item-speed__table">
 									<div class="item-speed__chart">
 										<svg data-watch viewBox="0 0 94 85" fill="none" xmlns="http://www.w3.org/2000/svg" class="animated-svg">
-											<rect x="0" y="42" width="4" height="32" fill="#4B619B" style="--h:42px; animation-delay: 0s;" />
-											<rect x="10" y="24" width="4" height="50" fill="#4B619B" style="--h:60px; animation-delay: 0.2s;" />
-											<rect x="20" y="34" width="4" height="40" fill="#4B619B" style="--h:50px; animation-delay: 0.4s;" />
-											<rect x="30" y="17" width="4" height="57" fill="#4B619B" style="--h:67px; animation-delay: 0.6s;" />
-											<rect x="40" y="29" width="4" height="45" fill="#4B619B" style="--h:55px; animation-delay: 0.8s;" />
-											<rect x="50" y="24" width="4" height="50" fill="#4B619B" style="--h:60px; animation-delay: 1.0s;" />
-											<rect x="60" y="31" width="4" height="42" fill="#4B619B" style="--h:53px; animation-delay: 1.2s;" />
-											<rect x="70" y="24" width="4" height="50" fill="#4B619B" style="--h:60px; animation-delay: 1.4s;" />
-											<rect x="80" y="17" width="4" height="57" fill="#4B619B" style="--h:67px; animation-delay: 1.6s;" />
-											<rect x="90" y="10" width="4" height="14" fill="#4B619B" style="--h:74px; animation-delay: 1.8s;" />
+											<!-- Розраховано: нова висота = oldHeight * 0.9, новий y = old y + (oldHeight - newHeight),
+													 значення в style (--h) також зменшено на 10% -->
+											<rect x="0" y="45.2" width="3.6" height="28.8" fill="#4B619B" style="--h:37.8px; animation-delay: 0s;" />
+											<rect x="10" y="29" width="3.6" height="45" fill="#4B619B" style="--h:54px; animation-delay: 0.2s;" />
+											<rect x="20" y="38" width="3.6" height="36" fill="#4B619B" style="--h:45px; animation-delay: 0.4s;" />
+											<rect x="30" y="22.7" width="3.6" height="51.3" fill="#4B619B" style="--h:60.3px; animation-delay: 0.6s;" />
+											<rect x="40" y="33.5" width="3.6" height="40.5" fill="#4B619B" style="--h:49.5px; animation-delay: 0.8s;" />
+											<rect x="50" y="29" width="3.6" height="45" fill="#4B619B" style="--h:54px; animation-delay: 1.0s;" />
+											<rect x="60" y="35.2" width="3.6" height="37.8" fill="#4B619B" style="--h:47.7px; animation-delay: 1.2s;" />
+											<rect x="70" y="29" width="3.6" height="45" fill="#4B619B" style="--h:54px; animation-delay: 1.4s;" />
+											<rect x="80" y="22.7" width="3.6" height="51.3" fill="#4B619B" style="--h:60.3px; animation-delay: 1.6s;" />
+											<rect x="90" y="16.4" width="3.6" height="12.6" fill="#4B619B" style="--h:66.6px; animation-delay: 1.8s;" />
 											<path d="M0.5 83.5L32 70L56.5 74L78 69H93.5" stroke="#A1CD44" stroke-width="2" stroke-dasharray="100" stroke-dashoffset="100" style="animation: drawLine 2s linear forwards; animation-delay: 2s;" />
 										</svg>
-
 									</div>
 									<table>
 										<tr>
@@ -215,7 +216,7 @@
 											<rect x="71" y="14" width="4" height="70" fill="#4B619B" style="--h:70px; animation-delay: 1.05s;" />
 											<rect x="81" y="7" width="4" height="77" fill="#4B619B" style="--h:77px; animation-delay: 1.2s;" />
 											<rect x="91" width="4" height="84" fill="#4B619B" style="--h:84px; animation-delay: 1.35s;" />
-											<path d="M1.5 83.5L32.5 55L59.5 61L99 34.5" stroke="#A1CD44" stroke-width="2" stroke-dasharray="150" stroke-dashoffset="150" style="animation: drawLine 1.5s linear forwards; animation-delay: 1.5s;" />
+											<path d="M1.5 83.5L32.5 55L59.5 61L95 25.5" stroke="#A1CD44" stroke-width="2" stroke-dasharray="150" stroke-dashoffset="150" style="animation: drawLine 1.5s linear forwards; animation-delay: 1.5s;" />
 										</svg>
 									</div>
 									<table>
@@ -538,7 +539,7 @@
 			</div>
 		</footer>
 	</div>
-	<script src="js/app.min.js?_v=20250326162445"></script>
+	<script src="js/app.min.js?_v=20250326165212"></script>
 </body>
 
 </html>
