@@ -2114,7 +2114,21 @@
             }
             drawGauge(currentSpeed);
         }
-        animateSpeedTest();
+        const observer1 = new MutationObserver((mutationsList => {
+            mutationsList.forEach((mutation => {
+                if (mutation.type === "attributes" && mutation.attributeName === "class") {
+                    const target = mutation.target;
+                    if (target.classList.contains("_watcher-view")) {
+                        currentSpeed = 0;
+                        animateSpeedTest();
+                    }
+                }
+            }));
+        }));
+        const speedAnimationElement = document.querySelector(".speed__animation");
+        if (speedAnimationElement) observer1.observe(speedAnimationElement, {
+            attributes: true
+        });
         window["FLS"] = false;
         digitsCounter();
     })();
