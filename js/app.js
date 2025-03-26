@@ -2004,38 +2004,99 @@
                 }));
             }
         }), 0);
+        const canvas = document.getElementById("speedTestCanvas");
+        const ctx = canvas.getContext("2d");
+        const centerX = canvas.width / 2;
+        const centerY = canvas.height / 2;
+        const radius = 120;
+        const maxSpeed = 2500;
+        let currentSpeed = 0;
+        let targetSpeed = 2310;
+        let animationFrame;
+        function drawGauge(speed) {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.beginPath();
+            ctx.arc(centerX, centerY, radius, Math.PI, 0);
+            ctx.strokeStyle = "#333";
+            ctx.lineWidth = 15;
+            ctx.stroke();
+            const endAngle = Math.PI + speed / maxSpeed * Math.PI;
+            ctx.beginPath();
+            ctx.arc(centerX, centerY, radius, Math.PI, endAngle);
+            ctx.strokeStyle = "#4B619B";
+            ctx.lineWidth = 15;
+            ctx.stroke();
+            const numTicks = 10;
+            const tickLength = 10;
+            const tickWidth = 2;
+            for (let i = 0; i <= numTicks; i++) {
+                const angle = Math.PI + i / numTicks * Math.PI;
+                const startX = centerX + (radius - tickLength - 10) * Math.cos(angle);
+                const startY = centerY + (radius - tickLength - 10) * Math.sin(angle);
+                const endX = centerX + (radius - 10) * Math.cos(angle);
+                const endY = centerY + (radius - 10) * Math.sin(angle);
+                ctx.beginPath();
+                ctx.moveTo(startX, startY);
+                ctx.lineTo(endX, endY);
+                ctx.strokeStyle = "rgb(118, 254, 156)";
+                ctx.lineWidth = tickWidth;
+                ctx.stroke();
+                const textRadius = radius - 30;
+                const textX = centerX + textRadius * Math.cos(angle);
+                const textY = centerY + textRadius * Math.sin(angle);
+                const tickValue = Math.round(i / numTicks * maxSpeed);
+                ctx.fillStyle = "#fff";
+                ctx.font = "8px Inter Tight";
+                ctx.textAlign = "center";
+                ctx.textBaseline = "middle";
+                ctx.fillText(tickValue, textX, textY);
+            }
+            ctx.fillStyle = "#fff";
+            ctx.font = "28px Inter Tight";
+            ctx.textAlign = "center";
+            ctx.fillText(`${Math.round(speed)}`, centerX, centerY + 40);
+            ctx.font = "16px Inter Tight";
+            ctx.fillText("Mbps", centerX, centerY + 70);
+            const arrowLength = radius - 20;
+            const arrowAngle = Math.PI + speed / maxSpeed * Math.PI;
+            const arrowX = centerX + arrowLength * Math.cos(arrowAngle);
+            const arrowY = centerY + arrowLength * Math.sin(arrowAngle);
+            ctx.beginPath();
+            ctx.moveTo(centerX, centerY);
+            ctx.lineTo(arrowX, arrowY);
+            ctx.strokeStyle = "#00BFFF";
+            ctx.lineWidth = 3;
+            ctx.stroke();
+        }
+        function animateSpeedTest() {
+            const speedDiff = targetSpeed - currentSpeed;
+            const increment = speedDiff * .02;
+            if (Math.abs(speedDiff) > 1) {
+                currentSpeed += increment;
+                if (currentSpeed < 0) currentSpeed = 0;
+                if (currentSpeed > targetSpeed) currentSpeed = targetSpeed;
+                animationFrame = requestAnimationFrame(animateSpeedTest);
+            } else {
+                currentSpeed = targetSpeed;
+                cancelAnimationFrame(animationFrame);
+            }
+            drawGauge(currentSpeed);
+        }
         const observer = new IntersectionObserver((entries => {
             entries.forEach((entry => {
-                const target = entry.target;
                 if (entry.isIntersecting) {
-                    target.classList.add("_watcher-view");
-                    const path = target.querySelector("path");
-                    if (path) {
-                        const newPath = path.cloneNode(true);
-                        path.parentNode.replaceChild(newPath, path);
-                    }
-                } else target.classList.remove("_watcher-view");
+                    const element = entry.target;
+                    element.classList.add("_watcher-view");
+                    currentSpeed = 0;
+                    animateSpeedTest();
+                } else {
+                    const element = entry.target;
+                    element.classList.remove("_watcher-view");
+                }
             }));
-        }), {
-            threshold: .5
-        });
-        document.querySelectorAll(".animated-svg").forEach((el => observer.observe(el)));
-        document.querySelectorAll(".simplebar-track.simplebar-vertical").forEach((track => {
-            let isDragging = false;
-            let startY, startScrollTop;
-            track.addEventListener("touchstart", (e => {
-                isDragging = true;
-                startY = e.touches[0].clientY;
-                startScrollTop = track.closest(".simplebar-content-wrapper").scrollTop;
-            }));
-            track.addEventListener("touchmove", (e => {
-                if (!isDragging) return;
-                let deltaY = e.touches[0].clientY - startY;
-                track.closest(".simplebar-content-wrapper").scrollTop = startScrollTop - deltaY;
-                e.preventDefault();
-            }));
-            track.addEventListener("touchend", (() => isDragging = false));
         }));
+        const speedAnimationElement = document.querySelector(".speed__animation");
+        if (speedAnimationElement) observer.observe(speedAnimationElement);
         window["FLS"] = false;
         digitsCounter();
     })();
