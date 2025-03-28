@@ -1969,21 +1969,22 @@
                 if (digitsCounters.length) digitsCounters.forEach((digitsCounter => {
                     if (digitsCounter.hasAttribute("data-go")) return;
                     digitsCounter.setAttribute("data-go", "");
+                    const startValue = digitsCounter.hasAttribute("data-digits-start") ? digitsCounter.getAttribute("data-digits-start") : "0";
                     digitsCounter.dataset.digitsCounter = digitsCounter.innerHTML;
-                    digitsCounter.innerHTML = `0`;
+                    digitsCounter.innerHTML = startValue;
                     digitsCountersAnimate(digitsCounter);
                 }));
             }
             function digitsCountersAnimate(digitsCounter) {
                 let startTimestamp = null;
                 const duration = parseFloat(digitsCounter.dataset.digitsCounterSpeed) ? parseFloat(digitsCounter.dataset.digitsCounterSpeed) : 1e3;
-                const startValue = parseFloat(digitsCounter.dataset.digitsCounter);
+                const endValue = parseFloat(digitsCounter.dataset.digitsCounter);
                 const format = digitsCounter.dataset.digitsCounterFormat ? digitsCounter.dataset.digitsCounterFormat : " ";
-                const startPosition = 0;
+                const startValue = parseFloat(digitsCounter.getAttribute("data-digits-start")) || 0;
                 const step = timestamp => {
                     if (!startTimestamp) startTimestamp = timestamp;
                     const progress = Math.min((timestamp - startTimestamp) / duration, 1);
-                    const value = Math.floor(progress * (startPosition + startValue));
+                    const value = Math.floor(startValue + progress * (endValue - startValue));
                     digitsCounter.innerHTML = typeof digitsCounter.dataset.digitsCounterFormat !== "undefined" ? getDigFormat(value, format) : value;
                     if (progress < 1) window.requestAnimationFrame(step); else digitsCounter.removeAttribute("data-go");
                 };
@@ -2102,7 +2103,7 @@
                 ctx.textAlign = "center";
                 ctx.fillText(`${Math.round(speed)}`, centerX, centerY + size * .1);
                 ctx.font = `${size * .04}px Arial`;
-                ctx.fillText("Mbps", centerX, centerY + size * .16);
+                ctx.fillText("Мбіт", centerX, centerY + size * .16);
                 const arrowLength = radius - 20;
                 const arrowAngle = Math.PI + speed / maxSpeed * Math.PI;
                 const arrowX = centerX + arrowLength * Math.cos(arrowAngle);

@@ -2,11 +2,11 @@
 <html lang="uk">
 
 <head>
-	<title>HomePage</title>
+	<title>Kolo TV</title>
 	<meta charset="UTF-8">
 	<meta name="format-detection" content="telephone=no">
-	<link rel="stylesheet" href="css/style.min.css?_v=20250327075312">
-	<script src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js?_v=20250327075312"></script>
+	<link rel="stylesheet" href="css/style.min.css?_v=20250328103025">
+	<script src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js?_v=20250328103025"></script>
 	<!-- <link rel="shortcut icon" href="favicon.ico"> -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
@@ -26,7 +26,7 @@
 						Стань першим – підключай інтернет нового покоління!
 					</h4>
 					<h1 class="hero__title" data-watch>
-						<b>2.5 гбіт –</b>
+						<b>2.4 <small>гбіт</small></b>
 						<span>інтернет майбутнього вже сьогодні!</span>
 					</h1>
 					<div class="hero__label" data-watch>
@@ -144,13 +144,15 @@
 						Швидкість завантаження
 					</h2>
 					<div class="speed__animation" data-watch>
+						<!-- анімація лічильника(також треба розкоментувати в JS)-->
 						<canvas id="speedTestCanvas" width="300" height="300"></canvas>
+						<!-- відео -->
 						<!-- <video data-src="files/video.mp4" playsinline autoplay muted loop></video> -->
 					</div>
 					<div class="speed__items">
 						<div class="speed__item item-speed" data-watch>
 							<h3 class="item-speed__title">
-								Швидкість завантаження <span>S.T.A.L.K.E.R. 2: Heart of Chornobyl</span> при <span>1 гбіт/c</span>
+								Швидкість завантаження при <span>1 гбіт/c</span>
 							</h3>
 							<div class="item-speed__body">
 								<div class="item-speed__image">
@@ -184,9 +186,9 @@
 											<th>DISK</th>
 										</tr>
 										<tr data-watch>
-											<td><span data-digits-counter data-digits-counter-speed="3500">120</span> MBps</td>
-											<td><span data-digits-counter data-digits-counter-speed="3500">98</span> MBps</td>
-											<td><span data-digits-counter data-digits-counter-speed="3500">74</span> MBps</td>
+											<td><span data-digits-counter data-digits-counter-speed="3000" data-digits-start="900">925</span> MBps</td>
+											<td><span>960</span> MBps</td>
+											<td><span data-digits-counter data-digits-counter-speed="10000">159</span> MBps</td>
 										</tr>
 									</table>
 								</div>
@@ -194,7 +196,7 @@
 						</div>
 						<div class="speed__item item-speed" data-watch>
 							<h3 class="item-speed__title">
-								Швидкість завантаження <span>S.T.A.L.K.E.R. 2: Heart of Chornobyl</span> при <span>2.5 гбіт/c</span>
+								Швидкість завантаження при <span>2.4 гбіт/c</span>
 							</h3>
 							<div class="item-speed__body">
 								<div class="item-speed__image">
@@ -226,9 +228,9 @@
 											<th>DISK</th>
 										</tr>
 										<tr data-watch>
-											<td><span data-digits-counter data-digits-counter-speed="3000">120</span> MBps</td>
-											<td><span data-digits-counter data-digits-counter-speed="3000">98</span> MBps</td>
-											<td><span data-digits-counter data-digits-counter-speed="3000">74</span> MBps</td>
+											<td><span data-digits-counter data-digits-counter-speed="3000" data-digits-start="2056">2246</span> MBps</td>
+											<td><span>2310</span> MBps</td>
+											<td><span data-digits-counter data-digits-counter-speed="5000">159</span> MBps</td>
 										</tr>
 									</table>
 								</div>
@@ -305,7 +307,11 @@
 				<div class="plan__container">
 					<div class="plan__content">
 						<h2 class="plan__title title" data-watch>
-							Тариф 2.5 гбіт – лише <span>599 грн/міс</span>
+							Тариф 2.4 гбіт – <div>лише</div>
+							<div>
+								<span>599</span>
+								<small>грн <br> міс</small>
+							</div>
 						</h2>
 						<div class="plan__label">стартова ціна для перших абонентів</div>
 						<div class="plan__body">
@@ -347,15 +353,70 @@
 									Список ЖК, де можливо підключити технологію PON:
 								</div>
 								<select name="select" data-scroll='216' class="plan__select select">
-									<option value="1" selected>ЖК Parkland</option>
-									<option value="2">ЖК Пимоненка</option>
-									<option value="3">ЖК Метрополіс</option>
+									<option value="1" selected>ЖК Львівський квартал</option>
+									<option value="2">ЖК Метрополіс</option>
+									<option value="3">ЖК Повітрофлотський Квартал</option>
 									<option value="4">ЖК Sky Avenue</option>
-									<option value="4">ЖК Навігатор</option>
-									<option value="2">ЖК Пимоненка</option>
-									<option value="3">ЖК Метрополіс</option>
-									<option value="4">ЖК Sky Avenue</option>
-									<option value="4">ЖК Навігатор</option>
+									<option value="5">ЖК Taryan Towers</option>
+									<option value="6">ЖК Вудсторія</option>
+									<option value="7">ЖК Лебединий</option>
+									<option value="8">ЖК Файна Таун</option>
+									<option value="9">ЖК 52 Перлина</option>
+									<option value="10">ЖК Навігатор</option>
+									<option value="11">ЖК Parkland</option>
+									<option value="12">ЖК Сирецькі Сади</option>
+									<option value="13">ЖК CityHUB</option>
+									<option value="14">ЖК Greenville Park</option>
+									<option value="15">ЖК Navigator 2</option>
+									<option value="16">ЖК Paradise Avenue</option>
+									<option value="17">ЖК Podil Plaza & Residence</option>
+									<option value="18">ЖК Poetica</option>
+									<option value="19">ЖК Royal Tower</option>
+									<option value="20">ЖК Signature</option>
+									<option value="21">ЖК TRIIINITY</option>
+									<option value="22">ЖК Terracotta</option>
+									<option value="23">ЖК UNIT.Home</option>
+									<option value="24">ЖК White Lines</option>
+									<option value="25">ЖК Європейка</option>
+									<option value="26">ЖК А52</option>
+									<option value="27">ЖК Багговутівський</option>
+									<option value="28">ЖК Брест-Литовський</option>
+									<option value="29">ЖК Династія</option>
+									<option value="30">ЖК Добре Місто</option>
+									<option value="31">ЖК Зелений острів</option>
+									<option value="32">ЖК Квартал Крюківщина</option>
+									<option value="33">ЖК Кришталеві джерела</option>
+									<option value="34">ЖК Львівський</option>
+									<option value="35">ЖК Петрівський квартал</option>
+									<option value="36">ЖК Республіка</option>
+									<option value="37">ЖК Сакура</option>
+									<option value="38">ЖК Старт</option>
+									<option value="39">ЖК Чорновола</option>
+									<option value="40">ЖК Шулявський</option>
+									<option value="41">Антоновича 28</option>
+									<option value="42">Антоновича 32</option>
+									<option value="43">Антоновича 34</option>
+									<option value="44">Антоновича 37</option>
+									<option value="45">Антоновича 38А</option>
+									<option value="46">Антоновича 38Б</option>
+									<option value="47">Антоновича 38В</option>
+									<option value="48">Антоновича 43А</option>
+									<option value="49">Володимирська 89</option>
+									<option value="50">Володимирська 89/91</option>
+									<option value="51">Пимоненка 3</option>
+									<option value="52">Пимоненка 5</option>
+									<option value="53">Саксаганського 33/35</option>
+									<option value="54">Саксаганського 41А</option>
+									<option value="55">Саксаганського 41В</option>
+									<option value="56">Саксаганського 43Б</option>
+									<option value="57">Саксаганського 45</option>
+									<option value="58">Українського відродження 3А</option>
+									<option value="59">Українського відродження 3Б</option>
+									<option value="60">Українського відродження 3В</option>
+									<option value="61">Українського відродження 3Г</option>
+									<option value="62">Українського відродження 5</option>
+									<option value="63">Українського відродження 7</option>
+									<option value="64">Українського відродження 9</option>
 								</select>
 								<button type="submit" class="plan__button button">
 									<img src="img/icons/button.svg" alt="Icon">
@@ -384,45 +445,45 @@
 					</div>
 					<div class="hardware__products">
 						<div class="hardware__product product-hardware" data-watch>
-							<a href="#" class="product-hardware__image">
-								<img src="img/Hardware/product.webp" alt="Image">
+							<a href="https://shop.kolo.tv/pidtrymka-25hbit/" class="product-hardware__image">
+								<img src="img/Hardware/01.webp" alt="Image">
 							</a>
 							<div class="product-hardware__content">
-								<a href="#" class="product-hardware__name">
+								<a href="https://shop.kolo.tv/pidtrymka-25hbit/" class="product-hardware__name">
 									Назва продукту
 								</a>
-								<button class="product-hardware__button button">
+								<a href="https://shop.kolo.tv/pidtrymka-25hbit/" class="product-hardware__button button">
 									<img src="img/icons/cart.svg" alt="Icon">
 									купити
-								</button>
+								</a>
 							</div>
 						</div>
 						<div class="hardware__product product-hardware" data-watch>
-							<a href="#" class="product-hardware__image">
-								<img src="img/Hardware/product.webp" alt="Image">
+							<a href="https://shop.kolo.tv/pidtrymka-25hbit/" class="product-hardware__image">
+								<img src="img/Hardware/02.webp" alt="Image">
 							</a>
 							<div class="product-hardware__content">
-								<a href="#" class="product-hardware__name">
+								<a href="https://shop.kolo.tv/pidtrymka-25hbit/" class="product-hardware__name">
 									Назва продукту
 								</a>
-								<button class="product-hardware__button button">
+								<a href="https://shop.kolo.tv/pidtrymka-25hbit/" class="product-hardware__button button">
 									<img src="img/icons/cart.svg" alt="Icon">
 									купити
-								</button>
+								</a>
 							</div>
 						</div>
 						<div class="hardware__product product-hardware" data-watch>
-							<a href="#" class="product-hardware__image">
-								<img src="img/Hardware/product.webp" alt="Image">
+							<a href="https://shop.kolo.tv/pidtrymka-25hbit/" class="product-hardware__image">
+								<img src="img/Hardware/03.webp" alt="Image">
 							</a>
 							<div class="product-hardware__content">
-								<a href="#" class="product-hardware__name">
+								<a href="https://shop.kolo.tv/pidtrymka-25hbit/" class="product-hardware__name">
 									Назва продукту
 								</a>
-								<button class="product-hardware__button button">
+								<a href="https://shop.kolo.tv/pidtrymka-25hbit/" class="product-hardware__button button">
 									<img src="img/icons/cart.svg" alt="Icon">
 									купити
-								</button>
+								</a>
 							</div>
 						</div>
 					</div>
@@ -463,8 +524,8 @@
 							</li>
 							<li data-watch>
 								<b>Ваші пристрої мають підтримувати Wi-Fi 6, Wi-Fi 7 або 2.5 гбіт Ethernet.</b>
-								Старіші пристрої можуть обмежувати швидкість через застарілі мережеві адаптери.
-								Рекомендуємо перевірити специфікації гаджетів перед підключенням.
+								Старіші пристрої можуть обмежувати швидкість через застарілі мережеві адаптери. Рекомендуємо перевірити специфікації гаджетів перед підключенням.
+								На практиці, при підключенні кабелем, середня швидкість через сервіс speedtest.net складала 2,1-2,31Гбіт/с, при підключенні через Wi-Fi швидкість залежатиме від вашого роутера та гаджету, на якому виконується замір.
 							</li>
 							<li data-watch>
 								<b>Ваша швидкість залежить не лише від інтернету, але й від можливостей серверів, сайтів чи додатків, якими ви користуєтесь.</b>
@@ -481,7 +542,7 @@
 			<section class="page__request request">
 				<div class="request__container">
 					<h2 class="request__title title" data-watch>
-						Хочете підключити 2.5 гбіт?
+						Хочете підключити 2.4 <small>гбіт</small>?
 					</h2>
 					<div class="request__subtitle" data-watch>
 						<span>Залишайте заявку –</span> <span>наш менеджер зв'яжеться з вами!</span>
@@ -493,9 +554,6 @@
 							ПІДКЛЮЧИТИСЬ
 						</button>
 					</form>
-					<div class="request__text text">
-						Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-					</div>
 				</div>
 			</section>
 		</main>
@@ -539,7 +597,7 @@
 			</div>
 		</footer>
 	</div>
-	<script src="js/app.min.js?_v=20250327075312"></script>
+	<script src="js/app.min.js?_v=20250328103025"></script>
 </body>
 
 </html>
